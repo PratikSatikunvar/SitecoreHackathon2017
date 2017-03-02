@@ -1,0 +1,54 @@
+----item----
+version: 1
+id: {F9697E74-0612-4B14-AAB6-40E7A30830D4}
+database: master
+path: /sitecore/content/Habitat/Home/Modules/Feature/Demo/_Local/Demo Content
+parent: {87DFF231-42B4-457A-817B-0ECC18ACD2C3}
+name: Demo Content
+master: {00000000-0000-0000-0000-000000000000}
+template: {B4F6F114-E653-4A22-86C5-499E0BD99D9A}
+templatekey: Demo Teaser
+created: 20161226T040951Z
+
+----version----
+language: en
+version: 1
+revision: 21abf417-1a19-4110-a03e-13164c90338e
+
+----field----
+field: {0BC0AEDF-A6D0-4F74-933C-BD1779CD40B2}
+name: HTML Content
+key: html content
+content-length: 142
+
+<div class="well">
+   This box can contain any HTML. <br/>Use the "Edit item" button in the page editor to edit the raw HTML content.
+</div>
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161201T030745Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+21abf417-1a19-4110-a03e-13164c90338e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161226T040951Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 17
+
+default\Anonymous

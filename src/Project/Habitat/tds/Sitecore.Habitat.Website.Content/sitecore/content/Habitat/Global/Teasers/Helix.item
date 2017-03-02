@@ -1,0 +1,80 @@
+----item----
+version: 1
+id: {DCF8B605-5837-484D-91BB-F04ECEB090FE}
+database: master
+path: /sitecore/content/Habitat/Global/Teasers/Helix
+parent: {6AA25831-0944-4A79-9AFF-7BAC39E03557}
+name: Helix
+master: {00000000-0000-0000-0000-000000000000}
+template: {C7D9D293-4EF8-4380-8E10-C4632E729F39}
+templatekey: Teaser
+created: 20161014T180642:636120652021030000
+
+----field----
+field: {E8AB122C-6F54-4D4E-AEC6-F81ADDC558FC}
+name: TeaserLink
+key: teaserlink
+content-length: 120
+
+<link linktype="external" text="Read the Documentation Now" url="http://helix.sitecore.net" anchor="" target="_blank" />
+----version----
+language: en
+version: 1
+revision: 9a97f00e-7d6e-410c-b0e0-b06daf3a459f
+
+----field----
+field: {4A59D072-5B41-4A79-A157-2B2CCAC10F2B}
+name: TeaserTitle
+key: teasertitle
+content-length: 23
+
+Discover Sitecore Helix
+----field----
+field: {0F6B5546-E0AB-4487-81DE-640C1AA1B65B}
+name: TeaserImage
+key: teaserimage
+content-length: 58
+
+<image mediaid="{FF7A25AE-725F-4AF3-970E-B17BFA4242AC}" />
+----field----
+field: {13D97A52-7C4E-407C-960D-FADDE8A3C1B1}
+name: TeaserSummary
+key: teasersummary
+content-length: 92
+
+Sitecore Helix is the official guidelines and recommended practices on Sitecore development.
+----field----
+field: {3F7E7E3A-4E8E-4639-B079-FC5AEFF172F5}
+name: Teaser Label
+key: teaser label
+content-length: 13
+
+Documentation
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160216T051414Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+9a97f00e-7d6e-410c-b0e0-b06daf3a459f
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161014T180642Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 17
+
+default\Anonymous
