@@ -7,6 +7,7 @@ using Sitecore;
 using Sitecore.Data.Items;
 using Sitecore.Data;
 using Sitecore.Globalization;
+using System.Text;
 
 namespace Sitecore.Feature.BulkItemEditor.API
 {
@@ -14,12 +15,15 @@ namespace Sitecore.Feature.BulkItemEditor.API
     {
         public string ItemGenerator(ItemCreatorModel model)
         {
-            string log = null;
+            StringBuilder log = new StringBuilder();
             try
             {
+                log.Append("Item Creation Process Started\n");
+                    
                 for (int i = 0; i < model.NumberOfItems; i++)
                 {
-                    Sitecore.Data.Database masterDB = Sitecore.Context.Database;
+                    Sitecore.Data.Database masterDB = Sitecore.Data.Database.GetDatabase("master");
+
                     #region Item Creation
                     bool IsParentId = ID.IsID(model.ParentNode);
                     Item parentItem;
@@ -37,7 +41,6 @@ namespace Sitecore.Feature.BulkItemEditor.API
                     Item newItem = parentItem.Add("Item-" + i, template);
 
                     #region Adding Language Versions
-
                     foreach (string languageCode in model.Languages)
                     {
                         using (new LanguageSwitcher(languageCode))
@@ -49,19 +52,18 @@ namespace Sitecore.Feature.BulkItemEditor.API
                             newItem.Editing.EndEdit();
                         }
                     }
-                    
+
+                    log.Append(newItem.Name+ " Created successfully with ID: "+ newItem.ID+ "\n");
                     #endregion
                 }
-
             }
             catch (Exception ex)
             {
-                log += ex.Message;
-                log += ex.StackTrace;
+                log.Append(ex.Message + "\n");
+                log.Append(ex.StackTrace + "\n");
             }
-
-
-            return log;
+            
+            return log.ToString();
         }
     }
 }
