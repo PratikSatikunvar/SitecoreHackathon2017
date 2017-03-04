@@ -13,6 +13,10 @@ namespace Sitecore.Feature.BulkItemEditor.API
 {
     public class ItemCreator
     {
+        /// <summary>
+        /// Method to generate the items as per input in the CMS.
+        /// </summary>
+        /// <param name="ItemCreatorModel"> model containing parent item Id/Path, Template Id/Path, Languages, no. of items to create etc. </param>
         public string ItemGenerator(ItemCreatorModel model)
         {
             StringBuilder log = new StringBuilder();
