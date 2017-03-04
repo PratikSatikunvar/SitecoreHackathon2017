@@ -50,11 +50,13 @@ namespace Sitecore.Feature.BulkItemEditor.API
                         {
                             Item parent = masterDB.GetItem(newItem.ParentID, Language.Parse(languageCode));
 
-                            newItem.Editing.BeginEdit();
+                            Item NewItem = parent.GetChildren().Where(x => x.ID == newItem.ID).FirstOrDefault();
 
-                            newItem.Versions.AddVersion();
+                            NewItem.Editing.BeginEdit();
 
-                            newItem.Editing.EndEdit();
+                            NewItem.Versions.AddVersion();
+
+                            NewItem.Editing.EndEdit();
                         }
                     }
 
