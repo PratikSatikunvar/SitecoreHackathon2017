@@ -10,6 +10,7 @@ using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Web.Hosting;
 using Sitecore.Data.Fields;
+using Sitecore.Feature.BulkItemEditor.Models;
 using Sitecore.Diagnostics;
 
 namespace Sitecore.Feature.BulkItemEditor.API
@@ -23,6 +24,7 @@ namespace Sitecore.Feature.BulkItemEditor.API
         /// <param name="language"> Language in which item's data needed to be downloaded </param>
         public void DownloadExcel(string parentItemId, string language)
         {
+
             try
             {
                 Sitecore.Data.Database master = Sitecore.Data.Database.GetDatabase("master");
@@ -41,20 +43,24 @@ namespace Sitecore.Feature.BulkItemEditor.API
                     string fieldLabel = string.Empty, fieldValue = string.Empty;
                     foreach (Item item in children)
                     {
-                        HttpContext.Current.Response.Write(item.ID.ToString() + "\n");
                         fieldLabel = fieldValue = string.Empty;
+                        fieldLabel += "Item ID" + "\t" + "Item Name" + "\t";
+                        fieldValue += item.ID.ToString() + "\t" + item.DisplayName + "\t";
+
                         item.Fields.ReadAll();
-                        foreach (Field field in item.Fields.Where(d => !d.Shared && !d.Name.StartsWith("__") && d.Name.Trim() != ""))
+                        var fields = item.Fields.Where(d => !d.Shared && !d.Name.StartsWith("__") && d.Name.Trim() != "");
+                        foreach (Field field in fields)
                         {
                             fieldLabel += field.Name + "\t";
                             fieldValue += item[field.Name] + "\t";
                         }
+
                         HttpContext.Current.Response.Write(fieldLabel + "\n");
                         HttpContext.Current.Response.Write(fieldValue + "\n");
+                        HttpContext.Current.Response.Write("\n");
                     }
 
                     HttpContext.Current.Response.End();
-
                 }
             }
             catch (Exception ex)
@@ -78,6 +84,42 @@ namespace Sitecore.Feature.BulkItemEditor.API
             {
                 Log.Error("Error in method createDirectory. FilePath: " + FilePath + ex.ToString(), ex);
             }
+        }
+
+
+        public string ItemUpdate(Dictionary<string, string> ItemInformation, string language)
+        {
+            StringBuilder log = new StringBuilder();
+            try
+            {
+                log.Append("Item Creation Process Started\n");
+
+                Sitecore.Data.Database masterDB = Sitecore.Data.Database.GetDatabase("master");
+
+                //ID gu = new ID();
+
+                //string itemId = "00000000-0000-0000-0000-000000000000";
+
+                Item contextItem = masterDB.GetItem(ID.Parse(ItemInformation.Values.FirstOrDefault()), Language.Parse(language));
+                using (new SecurityModel.SecurityDisabler())
+                {
+                    contextItem.Editing.BeginEdit();
+                    foreach (var data in ItemInformation)
+                    {
+                        contextItem[data.Key] = data.Value;
+                    }
+                    contextItem.Editing.EndEdit();
+                }
+                log.Append(contextItem.Name + " Updated successfully with ID: " + contextItem.ID + "\n");
+
+            }
+            catch (Exception ex)
+            {
+                log.Append(ex.Message + "\n");
+                log.Append(ex.StackTrace + "\n");
+            }
+
+            return log.ToString();
         }
     }
 }

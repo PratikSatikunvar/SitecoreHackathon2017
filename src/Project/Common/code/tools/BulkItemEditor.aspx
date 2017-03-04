@@ -32,7 +32,7 @@
                     <div class="tab-pane active" id="addItem">
                         <asp:UpdatePanel ID="upnlTab1" runat="server">
                             <ContentTemplate>
-                                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" style="margin-top:1.5%" OnClick="lnkAddNewRow_Click">Add New Row</asp:LinkButton>
+                                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" OnClick="lnkAddNewRow_Click" Style="margin-top: 1.5%">Add New Row</asp:LinkButton>
                                 <br />
                                 <br />
                                 <asp:Repeater ID="rpBulkItemEditor" runat="server" OnItemDataBound="rpBulkItemEditor_ItemDataBound">
@@ -42,7 +42,7 @@
                                                 <label for="parentNode">
                                                     <span>Parent Node/Parent Item Path</span>
                                                     <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" CssClass="alert-danger" 
+                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" CssClass="alert-danger"
                                                         ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true">
                                                     </asp:RequiredFieldValidator>
                                                 </label>
@@ -125,7 +125,7 @@
                                     <div class="form-group">
                                         <label for="uploadFile">
                                             <span>Select File For Upload</span>
-                                            <input type="file" name="upload" class="form-control">
+                                            <asp:FileUpload runat="server" ID="uploadFile" CssClass="form-control" />
                                         </label>
                                     </div>
                                 </td>
@@ -134,19 +134,15 @@
                                     <div class="form-group">
                                         <label for="language">
                                             <span>Select Languages</span>
-                                            <select class="form-control">
-                                                <option>French</option>
-                                                <option>Italino</option>
-                                                <option>English</option>
-                                                <option>Japannese</option>
-                                            </select>
+                                            <asp:DropDownList ID="ddlLanguage" runat="server" CssClass="form-control">
+                                            </asp:DropDownList>
                                         </label>
                                     </div>
                                 </td>
                                 <td class="tableTD"></td>
                                 <td class="tableTD"></td>
                                 <td>
-                                    <button type="submit" class="btn btn-primary">Upload File</button>
+                                    <asp:Button runat="server" CssClass="btn btn-primary" class="btn btn-primary" ID="btnUpload" OnClick="btnUpload_Click" Text="Upload" />
                                 </td>
                             </tr>
                         </table>
@@ -156,12 +152,12 @@
         </div>
     </div>
     <div id="footer">
-    </div>s
+    </div>
     <script src="jquery-3.1.1.js"></script>
     <script>
 
         jQuery.noConflict();
-        jQuery('.add').click(function (e) {
+        $('.add').click(function (e) {
             e.preventDefault();
             var data = "<tr><td><div class='form-group'><input type='text' class='form-control tableWidth' id='inputData' placeholder='Parent Node'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableWidth' id='templateID' placeholder='Template ID'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableNoOfItems' id='noOfItems' placeholder='No of Items'></div></td><td class='tableTD'></td><td><div class=.form-group'><select multiple class='form-control'><option>French</option><option>Italino</option><option>English</option><option>Japannese</option></select></div></td><td class='tableTD'></td><td><button type='submit' class='btn btn-primary remove'>Remove</button></td></tr>";
             jQuery('.tableItems').append(data);

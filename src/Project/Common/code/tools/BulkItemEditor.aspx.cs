@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using Sitecore.Globalization;
 using Sitecore.Data.Managers;
+using System.Runtime.InteropServices;
+using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 namespace Sitecore.Common.Website.sitecore.admin
 {
@@ -42,6 +45,9 @@ namespace Sitecore.Common.Website.sitecore.admin
 
                 ddlDownloadLanguage.DataSource = GetLanguages(); //Language dropdown binding
                 ddlDownloadLanguage.DataBind();
+
+                ddlLanguage.DataSource = GetLanguages(); //Language dropdown binding
+                ddlLanguage.DataBind();
             }
         }
 
@@ -62,7 +68,6 @@ namespace Sitecore.Common.Website.sitecore.admin
         /// </summary>
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Page.Validate();
             if (IsValid)
             {
                 foreach (RepeaterItem item in rpBulkItemEditor.Items)
@@ -72,9 +77,9 @@ namespace Sitecore.Common.Website.sitecore.admin
                         var model = new ItemCreatorModel();
 
                         //Find controls from item in repeater
-                        var ParentNode = (TextBox)item.FindControl("txtParentNode");
-                        var TemplateID = (TextBox)item.FindControl("txtTemplateID");
-                        var NoOfItems = (TextBox)item.FindControl("txtNoOfItems");
+                        var ParentNode = (System.Web.UI.WebControls.TextBox)item.FindControl("txtParentNode");
+                        var TemplateID = (System.Web.UI.WebControls.TextBox)item.FindControl("txtTemplateID");
+                        var NoOfItems = (System.Web.UI.WebControls.TextBox)item.FindControl("txtNoOfItems");
                         var Languages = (CheckBoxList)item.FindControl("cblLanguage");
 
                         //Set model values
@@ -116,22 +121,80 @@ namespace Sitecore.Common.Website.sitecore.admin
             }
         }
 
+        /// <summary>
+        /// Event handler to update the items.
+        /// </summary>
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            ItemUpdater itemupdate = new ItemUpdater();
+            if (uploadFile.PostedFile != null && uploadFile.PostedFile.ContentLength > 0)
+            {
+                var directoryLocation = System.IO.Path.GetTempPath();
+                string fileName = Path.Combine(directoryLocation, uploadFile.FileName);
+                uploadFile.PostedFile.SaveAs(fileName);
+
+                Application xlApp = new Application();
+                Workbook xlWorkbook = xlApp.Workbooks.Open(fileName);
+                Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                Range xlRange = xlWorksheet.UsedRange;
+                try
+                {
+                    int rowCount = xlRange.Rows.Count;
+                    int colCount = xlRange.Columns.Count;
+
+                    Sitecore.Data.Database master = Sitecore.Data.Database.GetDatabase("master");
+                    for (int i = 1; i <= rowCount; i = i + 3)
+                    {
+                        Dictionary<string, string> itemData = new Dictionary<string, string>();
+
+                        for (int j = 1; j <= colCount; j++)
+                        {
+                            if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null && xlRange.Cells[i + 1, j] != null && xlRange.Cells[i + 1, j].Value2 != null)
+                            {
+                                itemData.Add(xlRange.Cells[i, j].Value2.ToString(), xlRange.Cells[i + 1, j].Value2.ToString());
+                            }
+                        }
+
+                        if (itemData != null && itemData.Count > 0)
+                            itemupdate.ItemUpdate(itemData, ddlLanguage.SelectedValue);
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Sitecore.Diagnostics.Log.Error("Error occured in btnUpload_Click. Filename: " + fileName + ex.ToString(), ex);
+                }
+                //release com objects to fully kill excel process from running in the background
+                finally
+                {
+                    Marshal.ReleaseComObject(xlRange);
+                    Marshal.ReleaseComObject(xlWorksheet);
+                    //close and release
+                    xlWorkbook.Close();
+                    Marshal.ReleaseComObject(xlWorkbook);
+                    //quit and release
+                    xlApp.Quit();
+                    Marshal.ReleaseComObject(xlApp);
+                }
+            }
+        }
+
         #endregion Events
 
         #region Methods
 
         /// <summary>
-        /// Bind repeater to generate multiple forms.
-        /// </summary>
+        /// Description for SomeMethod.</summary>
+        /// <param name="s"> Parameter description for s goes here</param>
+        /// <seealso cref="String">
+        /// You can use the cref attribute on any tag to reference a type or member 
+        /// and the compiler will check that the reference exists. </seealso>
         private void BindBulkItemRepeater()
         {
             rpBulkItemEditor.DataSource = Rows;
             rpBulkItemEditor.DataBind();
         }
 
-        /// <summary>
-        /// Get languages from the context site.
-        /// </summary>
         private ListItemCollection GetLanguages()
         {
             ListItemCollection Languages = new ListItemCollection();
