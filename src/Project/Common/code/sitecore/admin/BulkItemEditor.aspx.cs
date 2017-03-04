@@ -33,6 +33,9 @@ namespace Sitecore.Common.Website.sitecore.admin
             {
                 rpBulkItemEditor.DataSource = Rows;
                 rpBulkItemEditor.DataBind();
+
+                ddlDownloadLanguage.DataSource = BindLanguages();
+                ddlDownloadLanguage.DataBind();
             }
         }
 
@@ -72,6 +75,25 @@ namespace Sitecore.Common.Website.sitecore.admin
             }
         }
 
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDownloadParentID.Text))
+            {
+                var itemUpdater = new ItemUpdater();
+                itemUpdater.DownloadExcel(txtDownloadParentID.Text, ddlDownloadLanguage.SelectedValue);
+            }
+        }
+
+        protected void rpBulkItemEditor_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var cblLanguage = (CheckBoxList)e.Item.FindControl("cblLanguage");
+            var languages = BindLanguages();
+            foreach (ListItem item in languages)
+            {
+                cblLanguage.Items.Add(item);
+            }
+        }
+
         private ListItemCollection BindLanguages()
         {
             ListItemCollection Languages = new ListItemCollection();
@@ -84,16 +106,6 @@ namespace Sitecore.Common.Website.sitecore.admin
                 Languages.Add(new ListItem() { Text = language.Name, Value = language.CultureInfo.TwoLetterISOLanguageName });
             }
             return Languages;
-        }
-
-        protected void rpBulkItemEditor_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            var cblLanguage = (CheckBoxList)e.Item.FindControl("cblLanguage");
-            var languages = BindLanguages();
-            foreach (ListItem item in languages)
-            {
-                cblLanguage.Items.Add(item);
-            }
         }
     }
 }

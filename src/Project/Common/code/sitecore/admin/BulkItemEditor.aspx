@@ -8,76 +8,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bulk Item Editor</title>
-    <style>
-        fieldset {
-            border-bottom: 1px solid grey;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-    </style>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
+    <div class="jumbotron text-center">
         <h2>Bulk Item Editor</h2>
     </div>
-    <div class="tab-content ">
-        <div class="tab-pane active" id="1" style="padding-left: 20px;">
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active">
+                    <a href="#addItem" data-toggle="tab">Add Data in Sitecore Items</a>
+                </li>
+                <li>
+                    <a href="#updateItem" data-toggle="tab">Update Data in Sitecore Items</a>
+                </li>
+            </ul>
             <form id="form1" runat="server">
-                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" OnClick="lnkAddNewRow_Click">Add New Row</asp:LinkButton>
-                <br />
-                <br />
-                <asp:Repeater ID="rpBulkItemEditor" runat="server" OnItemDataBound="rpBulkItemEditor_ItemDataBound">
-                    <ItemTemplate>
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="parentNode">
-                                    <span>Parent Node/Parent Item Path</span>
-                                    <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="required" InitialValue=""></asp:RequiredFieldValidator>
-                                </label>
+                <asp:ScriptManager ID="scMain" runat="server"></asp:ScriptManager>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="addItem">
+                        <asp:UpdatePanel ID="upnlTab1" runat="server">
+                            <ContentTemplate>
+                                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" OnClick="lnkAddNewRow_Click">Add New Row</asp:LinkButton>
                                 <br />
-                                <label for="templateID">
-                                    <span>Template Id/Template Path</span>
-                                    <asp:TextBox ID="txtTemplateID" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="required" InitialValue=""></asp:RequiredFieldValidator>
-                                </label>
-                                <label for="noOfItems">
-                                    <span>No of Items</span>
-                                    <asp:TextBox ID="txtNoOfItems" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="required" InitialValue=""></asp:RequiredFieldValidator>
-                                </label>
                                 <br />
-                                <label for="cblLanguage">
-                                    <span>Languages</span>
-                                    <asp:CheckBoxList ID="cblLanguage" runat="server">
-                                    </asp:CheckBoxList>
-                                </label>
-                            </div>
-                        </fieldset>
-                    </ItemTemplate>
-                </asp:Repeater>
-                <asp:Button ID="btnSubmit" CssClass="btn btn-default" runat="server" Text="Create" OnClick="btnSubmit_Click" ValidationGroup="BulkItem" UseSubmitBehavior="true" />
+                                <asp:Repeater ID="rpBulkItemEditor" runat="server" OnItemDataBound="rpBulkItemEditor_ItemDataBound">
+                                    <ItemTemplate>
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label for="parentNode">
+                                                    <span>Parent Node/Parent Item Path</span>
+                                                    <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" 
+                                                        ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true">
+                                                    </asp:RequiredFieldValidator>
+                                                </label>
+                                                <br />
+                                                <label for="templateID">
+                                                    <span>Template Id/Template Path</span>
+                                                    <asp:TextBox ID="txtTemplateID" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" 
+                                                        ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                </label>
+                                                <label for="noOfItems">
+                                                    <span>No of Items</span>
+                                                    <asp:TextBox ID="txtNoOfItems" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" 
+                                                        Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                </label>
+                                                <br />
+                                                <label for="cblLanguage">
+                                                    <span>Languages</span>
+                                                    <asp:CheckBoxList ID="cblLanguage" runat="server">
+                                                    </asp:CheckBoxList>
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:Button ID="btnSubmit" CssClass="btn btn-default" runat="server" Text="Create" OnClick="btnSubmit_Click" ValidationGroup="BulkItem" UseSubmitBehavior="true" />
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="lnkAddNewRow" EventName="Click" />
+                                <asp:PostBackTrigger ControlID="btnSubmit" />
+                                <asp:AsyncPostBackTrigger ControlID="rpBulkItemEditor" EventName="ItemDataBound" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="tab-pane" id="updateItem">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <table class="tableItems" style="margin-top: 30px;">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label for="parentNode">
+                                                    <span>Parent Node/Parent Item Path</span>
+                                                    <asp:TextBox ID="txtDownloadParentID" runat="server" CssClass="form-control tableWidth"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="reqtxtDownloadParentID" runat="server" ControlToValidate="txtDownloadParentID"
+                                                        Display="Dynamic" ErrorMessage="required" SetFocusOnError="true" InitialValue="" ValidationGroup="Download"></asp:RequiredFieldValidator>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="tableTD"></td>
+                                        <td class="tableTD"></td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <label for="language">
+                                                    <span>Select Languages</span>
+                                                    <asp:DropDownList ID="ddlDownloadLanguage" runat="server" CssClass="form-control">
+                                                    </asp:DropDownList>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td class="tableTD"></td>
+                                        <td class="tableTD"></td>
+                                        <td>
+                                            <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-primary" Text="Download File" OnClick="btnDownload_Click" ValidationGroup="Download" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:PostBackTrigger ControlID="btnDownload" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+
+                        <table class="tableItems" style="margin-top: 30px;">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="uploadFile">
+                                            <span>Select File For Upload</span>
+                                            <input type="file" name="upload" class="form-control">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="tableTD"></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label for="language">
+                                            <span>Select Languages</span>
+                                            <select class="form-control">
+                                                <option>French</option>
+                                                <option>Italino</option>
+                                                <option>English</option>
+                                                <option>Japannese</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="tableTD"></td>
+                                <td class="tableTD"></td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Upload File</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </form>
         </div>
-        <div class="tab-pane" id="2">
-        </div>
-        <div class="tab-pane" id="3">
-        </div>
     </div>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <div id="footer">
+    </div>
+    <script src="jquery-3.1.1.js"></script>
     <script>
-        function validate() {
-            if (Page_ClientValidate("LoginUserValidationGroup")) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+
+        $('.add').click(function (e) {
+            e.preventDefault();
+            var data = "<tr><td><div class='form-group'><input type='text' class='form-control tableWidth' id='inputData' placeholder='Parent Node'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableWidth' id='templateID' placeholder='Template ID'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableNoOfItems' id='noOfItems' placeholder='No of Items'></div></td><td class='tableTD'></td><td><div class=.form-group'><select multiple class='form-control'><option>French</option><option>Italino</option><option>English</option><option>Japannese</option></select></div></td><td class='tableTD'></td><td><button type='submit' class='btn btn-primary remove'>Remove</button></td></tr>";
+            $('.tableItems').append(data);
+        });
+        $('.remove').click(function (e) {
+            e.preventDefault();
+            $('tr').remove('td');
+        });
     </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
