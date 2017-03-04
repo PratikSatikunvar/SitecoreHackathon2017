@@ -76,6 +76,8 @@
     <Content Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\BulkItemEditor\UpdateSitecoreItem.cshtml" />
+    <Content Include="App_Config\Include\BULKItemEditor\Command\OpenWindowCommand.config" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,11 +93,11 @@
   <ItemGroup>
     <Compile Include="API\ItemCreator.cs" />
     <Compile Include="API\ItemUpdater.cs" />
+    <Compile Include="Command\BulkItemEditorCommand.cs" />
     <Compile Include="Models\ItemCreatorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Config\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>

@@ -32,32 +32,33 @@
                     <div class="tab-pane active" id="addItem">
                         <asp:UpdatePanel ID="upnlTab1" runat="server">
                             <ContentTemplate>
-                                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" OnClick="lnkAddNewRow_Click">Add New Row</asp:LinkButton>
+                                <asp:LinkButton ID="lnkAddNewRow" CssClass="btn btn-default" runat="server" style="margin-top:1.5%" OnClick="lnkAddNewRow_Click">Add New Row</asp:LinkButton>
                                 <br />
                                 <br />
                                 <asp:Repeater ID="rpBulkItemEditor" runat="server" OnItemDataBound="rpBulkItemEditor_ItemDataBound">
                                     <ItemTemplate>
-                                        <fieldset>
+                                        <fieldset style="border-bottom: 1px solid grey; margin-bottom: 20px;">
                                             <div class="form-group">
                                                 <label for="parentNode">
                                                     <span>Parent Node/Parent Item Path</span>
                                                     <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" 
-                                                        ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true">
+                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" CssClass="alert-danger" 
+                                                        ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true">
                                                     </asp:RequiredFieldValidator>
                                                 </label>
                                                 <br />
                                                 <label for="templateID">
                                                     <span>Template Id/Template Path</span>
                                                     <asp:TextBox ID="txtTemplateID" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" 
-                                                        ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" CssClass="alert-danger"
+                                                        ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                                 </label>
+                                                <br />
                                                 <label for="noOfItems">
                                                     <span>No of Items</span>
                                                     <asp:TextBox ID="txtNoOfItems" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" 
-                                                        Display="Dynamic" ErrorMessage="required" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" CssClass="alert-danger"
+                                                        Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                                 </label>
                                                 <br />
                                                 <label for="cblLanguage">
@@ -88,8 +89,8 @@
                                                 <label for="parentNode">
                                                     <span>Parent Node/Parent Item Path</span>
                                                     <asp:TextBox ID="txtDownloadParentID" runat="server" CssClass="form-control tableWidth"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqtxtDownloadParentID" runat="server" ControlToValidate="txtDownloadParentID"
-                                                        Display="Dynamic" ErrorMessage="required" SetFocusOnError="true" InitialValue="" ValidationGroup="Download"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="reqtxtDownloadParentID" runat="server" ControlToValidate="txtDownloadParentID" CssClass="alert-danger"
+                                                        Display="Dynamic" ErrorMessage="Required!" SetFocusOnError="true" InitialValue="" ValidationGroup="Download"></asp:RequiredFieldValidator>
                                                 </label>
                                             </div>
                                         </td>
@@ -155,18 +156,19 @@
         </div>
     </div>
     <div id="footer">
-    </div>
+    </div>s
     <script src="jquery-3.1.1.js"></script>
     <script>
 
-        $('.add').click(function (e) {
+        jQuery.noConflict();
+        jQuery('.add').click(function (e) {
             e.preventDefault();
             var data = "<tr><td><div class='form-group'><input type='text' class='form-control tableWidth' id='inputData' placeholder='Parent Node'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableWidth' id='templateID' placeholder='Template ID'></div></td><td class='tableTD'></td><td><div class='form-group'><input type='text' class='form-control tableNoOfItems' id='noOfItems' placeholder='No of Items'></div></td><td class='tableTD'></td><td><div class=.form-group'><select multiple class='form-control'><option>French</option><option>Italino</option><option>English</option><option>Japannese</option></select></div></td><td class='tableTD'></td><td><button type='submit' class='btn btn-primary remove'>Remove</button></td></tr>";
-            $('.tableItems').append(data);
+            jQuery('.tableItems').append(data);
         });
-        $('.remove').click(function (e) {
+        jQuery('.remove').click(function (e) {
             e.preventDefault();
-            $('tr').remove('td');
+            jQuery('tr').remove('td');
         });
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

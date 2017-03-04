@@ -62,6 +62,7 @@ namespace Sitecore.Common.Website.sitecore.admin
         /// </summary>
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            Page.Validate();
             if (IsValid)
             {
                 foreach (RepeaterItem item in rpBulkItemEditor.Items)
