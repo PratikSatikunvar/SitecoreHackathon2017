@@ -38,35 +38,59 @@
                                 <asp:Repeater ID="rpBulkItemEditor" runat="server" OnItemDataBound="rpBulkItemEditor_ItemDataBound">
                                     <ItemTemplate>
                                         <fieldset style="border-bottom: 1px solid grey; margin-bottom: 20px;">
-                                            <div class="form-group">
-                                                <label for="parentNode">
-                                                    <span>Parent Node/Parent Item Path</span>
-                                                    <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" CssClass="alert-danger"
-                                                        ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true">
-                                                    </asp:RequiredFieldValidator>
-                                                </label>
-                                                <br />
-                                                <label for="templateID">
-                                                    <span>Template Id/Template Path</span>
-                                                    <asp:TextBox ID="txtTemplateID" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" CssClass="alert-danger"
-                                                        ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
-                                                </label>
-                                                <br />
-                                                <label for="noOfItems">
-                                                    <span>No of Items</span>
-                                                    <asp:TextBox ID="txtNoOfItems" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" CssClass="alert-danger"
-                                                        Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
-                                                </label>
-                                                <br />
-                                                <label for="cblLanguage">
-                                                    <span>Languages</span>
-                                                    <asp:CheckBoxList ID="cblLanguage" runat="server">
-                                                    </asp:CheckBoxList>
-                                                </label>
-                                            </div>
+                                            <table class="tableItems">
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="parentNode">
+                                                                <span>Parent Item ID/Path</span>
+                                                                <asp:TextBox ID="txtParentNode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="reqParentNode" runat="server" ValidationGroup="BulkItem" CssClass="alert-danger"
+                                                                    ControlToValidate="txtParentNode" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true">
+                                                                </asp:RequiredFieldValidator>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="tableTD"></td>
+
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="templateID">
+                                                                <span>Template Id/Path</span>
+                                                                <asp:TextBox ID="txtTemplateID" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="reqTemplateID" runat="server" ControlToValidate="txtTemplateID" CssClass="alert-danger"
+                                                                    ValidationGroup="BulkItem" Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="tableTD"></td>
+
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="noOfItems">
+                                                                <span>No. of Items</span>
+                                                                <asp:TextBox ID="txtNoOfItems" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="reqNoOfItems" runat="server" ControlToValidate="txtNoOfItems" ValidationGroup="BulkItem" CssClass="alert-danger"
+                                                                    Display="Dynamic" ErrorMessage="Required!" InitialValue="" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="tableTD"></td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <label for="cblLanguage">
+                                                                <span>Languages</span>
+                                                                <asp:CheckBoxList ID="cblLanguage" runat="server">
+                                                                </asp:CheckBoxList>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="tableTD"></td>
+                                                </tr>
+                                            </table>
                                         </fieldset>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -87,7 +111,7 @@
                                         <td>
                                             <div class="form-group">
                                                 <label for="parentNode">
-                                                    <span>Parent Node/Parent Item Path</span>
+                                                    <span>Parent Item ID/Path</span>
                                                     <asp:TextBox ID="txtDownloadParentID" runat="server" CssClass="form-control tableWidth"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="reqtxtDownloadParentID" runat="server" ControlToValidate="txtDownloadParentID" CssClass="alert-danger"
                                                         Display="Dynamic" ErrorMessage="Required!" SetFocusOnError="true" InitialValue="" ValidationGroup="Download"></asp:RequiredFieldValidator>
@@ -126,6 +150,8 @@
                                         <label for="uploadFile">
                                             <span>Select File For Upload</span>
                                             <asp:FileUpload runat="server" ID="uploadFile" CssClass="form-control" />
+                                            <asp:RequiredFieldValidator ID="reqFileUpload" runat="server" ControlToValidate="uploadFile" CssClass="alert-danger"
+                                                Display="Dynamic" ErrorMessage="Required!" SetFocusOnError="true" InitialValue="" ValidationGroup="upload"></asp:RequiredFieldValidator>
                                         </label>
                                     </div>
                                 </td>
@@ -142,7 +168,7 @@
                                 <td class="tableTD"></td>
                                 <td class="tableTD"></td>
                                 <td>
-                                    <asp:Button runat="server" CssClass="btn btn-primary" class="btn btn-primary" ID="btnUpload" OnClick="btnUpload_Click" Text="Upload" />
+                                    <asp:Button runat="server" CssClass="btn btn-primary" class="btn btn-primary" ID="btnUpload" OnClick="btnUpload_Click" Text="Upload File" ValidationGroup="upload" />
                                 </td>
                             </tr>
                         </table>
