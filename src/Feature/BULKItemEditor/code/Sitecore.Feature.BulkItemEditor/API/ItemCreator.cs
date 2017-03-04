@@ -41,7 +41,10 @@ namespace Sitecore.Feature.BulkItemEditor.API
                     Item newItem = parentItem.Add("Item-" + i, template);
 
                     #region Adding Language Versions
-                    foreach (string languageCode in model.Languages)
+
+                    var languageCollection = model.Languages.Split(',');
+
+                    foreach (string languageCode in languageCollection)
                     {
                         using (new LanguageSwitcher(languageCode))
                         {

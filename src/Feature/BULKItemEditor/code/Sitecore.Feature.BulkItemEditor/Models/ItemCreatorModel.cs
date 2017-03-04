@@ -10,6 +10,6 @@ namespace Sitecore.Feature.BulkItemEditor.Models
         public string ParentNode { get; set; }
         public string TemplateId { get; set; }
         public int NumberOfItems { get; set; }
-        public List<string> Languages { get; set; }
+        public string Languages { get; set; }
     }
 }
