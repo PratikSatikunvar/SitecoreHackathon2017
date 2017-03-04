@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{CFB9BC26-DEEB-4AA9-B220-697A0BC0E5AB}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+		TdsGlobal.config = TdsGlobal.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{B76B6ADC-E6D5-46A0-999E-30760E096867}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{B20D68F6-BB0F-49C8-8C4F-344272BDD4F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SitecoreItemExtensions", "SitecoreItemExtensions", "{DD8DF467-73FF-43C6-91A5-0F80A76719B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCHackathon.Foundation.SitecoreItemExtensions", "src\Foundation\SitecoreItemExtensions\code\SCHackathon.Foundation.SitecoreItemExtensions\SCHackathon.Foundation.SitecoreItemExtensions.csproj", "{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B}"
+EndProject
+Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "SCHackathon.Foundation.SitecoreItemExtensions.Master", "src\Foundation\SitecoreItemExtensions\tds\SCHackathon.Foundation.SitecoreItemExtensions.Master\SCHackathon.Foundation.SitecoreItemExtensions.Master.scproj", "{0271BE95-2EAB-4285-A406-F2729774989B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{386EF188-7F20-4AAF-BD5E-677D76D30D77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BULKItemEditor", "BULKItemEditor", "{A997A11F-AEBE-4D70-9F92-F599D7C45487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCHackathon.Feature.BULKItemEditor", "src\Feature\BULKItemEditor\code\SCHackathon.Feature.BULKItemEditor\SCHackathon.Feature.BULKItemEditor.csproj", "{9710976C-366E-4C15-937E-7754F4C9799E}"
+EndProject
+Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "SCHackathon.Feature.BULKItemEditor.Master", "src\Feature\BULKItemEditor\tds\SCHackathon.Feature.BULKItemEditor.Master\SCHackathon.Feature.BULKItemEditor.Master.scproj", "{76D31E99-79A7-421D-AA94-15CAE4008DC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hackathon", "Hackathon", "{937CE541-1049-43B6-B3EC-8D5429F4EC25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCHackathon.Hackathon.Website", "src\Project\Hackathon\code\SCHackathon.Hackathon.Website\SCHackathon.Hackathon.Website.csproj", "{22D157B2-10D9-4080-A1B0-642A585C605A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0271BE95-2EAB-4285-A406-F2729774989B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9710976C-366E-4C15-937E-7754F4C9799E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9710976C-366E-4C15-937E-7754F4C9799E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9710976C-366E-4C15-937E-7754F4C9799E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9710976C-366E-4C15-937E-7754F4C9799E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{22D157B2-10D9-4080-A1B0-642A585C605A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D157B2-10D9-4080-A1B0-642A585C605A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D157B2-10D9-4080-A1B0-642A585C605A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D157B2-10D9-4080-A1B0-642A585C605A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DD8DF467-73FF-43C6-91A5-0F80A76719B8} = {B20D68F6-BB0F-49C8-8C4F-344272BDD4F9}
+		{A7FAFE34-4B16-4EA0-AD65-8F71C7A2443B} = {DD8DF467-73FF-43C6-91A5-0F80A76719B8}
+		{0271BE95-2EAB-4285-A406-F2729774989B} = {DD8DF467-73FF-43C6-91A5-0F80A76719B8}
+		{A997A11F-AEBE-4D70-9F92-F599D7C45487} = {386EF188-7F20-4AAF-BD5E-677D76D30D77}
+		{9710976C-366E-4C15-937E-7754F4C9799E} = {A997A11F-AEBE-4D70-9F92-F599D7C45487}
+		{76D31E99-79A7-421D-AA94-15CAE4008DC2} = {A997A11F-AEBE-4D70-9F92-F599D7C45487}
+		{937CE541-1049-43B6-B3EC-8D5429F4EC25} = {B76B6ADC-E6D5-46A0-999E-30760E096867}
+		{22D157B2-10D9-4080-A1B0-642A585C605A} = {937CE541-1049-43B6-B3EC-8D5429F4EC25}
+	EndGlobalSection
+EndGlobal
