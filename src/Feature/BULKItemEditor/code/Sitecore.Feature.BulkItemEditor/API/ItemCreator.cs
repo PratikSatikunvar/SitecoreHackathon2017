@@ -48,6 +48,8 @@ namespace Sitecore.Feature.BulkItemEditor.API
                     {
                         using (new LanguageSwitcher(languageCode))
                         {
+                            Item parent = masterDB.GetItem(newItem.ParentID, Language.Parse(languageCode));
+
                             newItem.Editing.BeginEdit();
 
                             newItem.Versions.AddVersion();
